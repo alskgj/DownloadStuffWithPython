@@ -15,10 +15,10 @@ Then run the webserver script, it exposes a rest api simulating a real server. T
 
 There are currently 3 examples
 ```properties
-simple.py Fetch urls one after another
-threaded.py Fetch urls using Threads
-async.py Fetch urls using asyncio
-optimized.py async.py with some optimizations
+simple.py:    Fetch urls one after another
+threaded.py   Fetch urls using Threads
+async.py      Fetch urls using asyncio
+optimized.py  async.py with some optimizations
 ```
 
 They all fetch the resources at (with n configurable at constants.TRIALS)
