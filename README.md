@@ -41,12 +41,12 @@ async.py:     computed value 4950 for 100 trials in 1s
 optimized.py: computed value 4950 for 100 trials in 1s
 ```
 
-### With constants.TRIALS = 10000
+### With constants.TRIALS = 10_000
 Values this high bottleneck on stuff not directly related to the example files:
 - simple.py runs fine (but very slowly)
 - threaded.py will crash something, either itself, your webserver, or your os
 - async.py  will probably bottleneck the webserver
-- optimized.py uses multiple sessions to workaround the built-in throtting mechanisms
+- optimized.py uses multiple sessions to work around the built-in throttling mechanisms
   of the webserver.
 
 On my machine this was:
