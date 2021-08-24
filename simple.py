@@ -1,8 +1,13 @@
+"""
+    simple.py
+    =========
+
+    Fetches 10 urls one by one.
+"""
+
 import requests
 import constants
 import time
-
-TRIALS = 10
 
 
 def download_one(x):
@@ -12,8 +17,9 @@ def download_one(x):
 
 start = time.time()
 computed_sum = 0
-for i in range(TRIALS):
+for i in range(constants.TRIALS):
     computed_sum += download_one(i)['value']
 time_taken = round(time.time()-start)
 
-print(f'computed value {computed_sum} for {TRIALS} trials in {time_taken}s')
+print(f'computed value {computed_sum} for {constants.TRIALS} trials in '
+      f'{time_taken}s')

@@ -24,4 +24,4 @@ async def root(identifier: int):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app)
+    uvicorn.run(app='webserver:app', workers=4)
