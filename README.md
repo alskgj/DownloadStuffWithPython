@@ -11,9 +11,9 @@ python3 -m pip install -r requirements.txt
 
 Then run the webserver script, it exposes a rest api simulating a real server. To test if you launched the server correctly you can visit the docs at http://127.0.0.1:8000/docs.
 
-## Examples
+## Example scripts
 
-There are currently 3 examples
+There are currently 4 example scripts
 ```properties
 simple.py:    Fetch urls one after another
 threaded.py   Fetch urls using Threads
@@ -21,7 +21,7 @@ async.py      Fetch urls using asyncio
 optimized.py  async.py with some optimizations
 ```
 
-They all fetch the resources at (with n configurable at constants.TRIALS)
+They all fetch the resources at the following urls.
 ```
 http://127.0.0.1:8000/0
 http://127.0.0.1:8000/1
@@ -29,7 +29,15 @@ http://127.0.0.1:8000/1
 http://127.0.0.1:8000/n-1
 ```
 
-the webserver waits one second until answering a request, to simulate a slow website.
+`n` is configurable in `constants.TRIALS`.
+
+The webserver waits one second until answering a request, 
+to simulate a slow website. The webserver answers each request with a 
+dictionary containing the value of the id, so GET http://127.0.0.1:8000/42
+returns {'value': 42}.
+
+The various download scripts fetch and sum all received values, to show that 
+they indeed received all responses.
 
 ## Expected behaviour
 
