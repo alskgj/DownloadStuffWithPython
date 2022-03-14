@@ -26,9 +26,10 @@ async def main():
     await session.close()
     computed_sum = sum([element['value'] for element in responses])
 
-    time_taken = round(time.time()-start)
+    time_taken = time.time() - start
+
     print(f'computed value {computed_sum} for {constants.TRIALS} trials in '
-          f'{time_taken}s')
+          f'{round(time_taken, 2)}s - took {round(time_taken / constants.TRIALS, 5)}s per download')
 
 
 if __name__ == '__main__':

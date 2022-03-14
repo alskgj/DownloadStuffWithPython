@@ -1,27 +1,17 @@
-from fastapi import FastAPI
-import uvicorn
-import random
-import time
 import asyncio
+
+import uvicorn
+from fastapi import FastAPI
 
 app = FastAPI()
 
 
-@app.get("/random/{identifier}")
-async def root(identifier: int):
-    """ This simulates a webservice that takes some time to respond
-    """
-    await asyncio.sleep(random.randint(0, 3))
-    return {"message": f"Hello! You sent me {identifier}", "value": identifier}
-
-
 @app.get("/{identifier}")
 async def root(identifier: int):
-    """ This simulates a webservice that takes exactly 1s to respond
+    """ This simulates a webservice that takes roughly 0.1s to respond
     """
-    await asyncio.sleep(1)
+    # await asyncio.sleep(0.01)
     return {"message": f"Hello! You sent me {identifier}", "value": identifier}
 
-
 if __name__ == "__main__":
-    uvicorn.run(app='webserver:app', workers=4)
+    uvicorn.run(app='webserver:app')
