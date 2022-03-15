@@ -20,10 +20,11 @@ def download_one(x: int, q: queue.Queue):
     response = requests.get(f'{constants.API_URL}/{x}').json()
     q.put(response['value'])
 
+
 start = time.time()
 result_queue = queue.Queue()
-tasks = [threading.Thread(target=download_one, args=(x, result_queue))
-         for x in range(constants.TRIALS)]
+tasks = (threading.Thread(target=download_one, args=(x, result_queue))
+         for x in range(constants.TRIALS))
 
 for t in tasks:
     t.start()

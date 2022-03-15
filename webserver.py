@@ -10,7 +10,7 @@ app = FastAPI()
 async def root(identifier: int):
     """ This simulates a webservice that takes roughly 0.1s to respond
     """
-    # await asyncio.sleep(0.01)
+    await asyncio.sleep(0.01)
     return {"message": f"Hello! You sent me {identifier}", "value": identifier}
 
 if __name__ == "__main__":

@@ -32,10 +32,9 @@ async def main():
 
     print(f'computed value {computed_sum} for {constants.TRIALS} trials in '
           f'{round(time_taken, 2)}s - took {round(time_taken / constants.TRIALS, 5)}s per download')
-
+    print(f'Async+ {round(time_taken / constants.TRIALS, 6)} {round(time_taken / constants.TRIALS * 1_000_000_000 / 60 / 60 / 24, 2)}')
     for session in sessions:
         await session.close()
 
 if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    asyncio.run(main())

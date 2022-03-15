@@ -4,7 +4,7 @@
 
     Starts a new thread for each of the 10 urls this program fetches.
     Each thread puts its result in a queue after receiving it. The main
-    program fetches values from that queue until all 10 values have been
+    program fetches values from that queue until all values have been
     obtained.
 """
 
@@ -14,7 +14,7 @@ import time
 import requests
 import constants
 
-NUM_WORKERS = 100
+NUM_WORKERS = 10000
 
 
 def download_one(x: int, q: queue.Queue, session: requests.Session):
@@ -24,8 +24,12 @@ def download_one(x: int, q: queue.Queue, session: requests.Session):
 
 def worker(first: int, last: int, q: queue.Queue):
     session = requests.Session()
+    partial_sum = 0
     for i in range(first, last):
-        download_one(i, q, session)
+        response = session.get(f'{constants.API_URL}/{i}')
+        partial_sum += response.json()['value']
+    q.put(partial_sum)
+
 
 
 start = time.time()
@@ -41,7 +45,7 @@ for t in workers:
     t.start()
 
 computed_sum = 0
-for i in range(constants.TRIALS):
+for i in range(NUM_WORKERS):
     computed_sum += result_queue.get()
 time_taken = time.time()-start
 
